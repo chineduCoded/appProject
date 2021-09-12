@@ -44,8 +44,14 @@ const CardApp = () => {
             {data.map((props) => {
 		return (
 		 
-		 <div className="card">
-                                                               <div className="cardRow">                          <div className="cardRowCancel">                     <MdCancel  />                                   </div>                                            <img className="cardRowAvatar"                      src={props.avatar} alt="" />                    </div>
+        <div className="card">
+          <div className="cardRow">
+            <div className="cardRowCancel">                    
+             <MdCancel  />                                   
+            </div>                                            
+            <img className="cardRowAvatar"                      
+            src={props.avatar} alt="" />                    
+          </div>
 
 	  <div className="cardQuote">
 	   <div><ImQuotesLeft /></div>
