@@ -1,12 +1,12 @@
 import React from "react"
-import CardApp from "./Components/CardApp"
+import GameScreen from "./Components/SimpleGame/GameScreen"
 import "antd/dist/antd.css"
 
 const App = () => {
 
 	return (
 		<div>
-		  <CardApp />
+		  <GameScreen  />
 		</div>
 	)
 }
