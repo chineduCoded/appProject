@@ -1,14 +1,17 @@
-import React from "react"
-import GameScreen from "./Components/SimpleGame/GameScreen"
-import "antd/dist/antd.css"
+import React from 'react'
+import GitHubApp from './Components/GitHub/GitHubApp'
+import styled from 'styled-components'
 
 const App = () => {
-
 	return (
-		<div>
-		  <GameScreen  />
-		</div>
+		<Container>
+			<GitHubApp />
+		</Container>
 	)
 }
 
 export default App
+
+const Container = styled.div`
+`;
+

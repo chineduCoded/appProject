@@ -1,122 +1,80 @@
-import React, {useState, useEffect} from "react"
+import React, { useState,useEffect } from "react"
 import styled from "styled-components"
 
 const GameScreen = () => {
-	const [picker, setPicker] = useState(0)
-	const [computer, setComputer] = useState(0)
 
-	const guessValue = (min, max) => {
-	  return(
-	   setComputer(Math.floor(Math.random()*(max - min) + min))
-	  )
-	}
+  const [picker, setPicker] = useState(0)
+  const [computer, setComputer] = useState(0)
 
-	useEffect(() => {
-	   const guess = setInterval(() => {
-		guessValue(1, 5)
-	   }, 5000)
+  const guessValue = (min, max) => {
+    setComputer(Math.floor(Math.random()*(max - min + 1) + min))
+  }
 
-	   return () => clearInterval(guess)
-	}, [])
+  useEffect(() => {
+      const guess = setInterval(() => {
+              guessValue(1,5)
+      }, 5000)
 
-	return(
-	<Container>
-	  <Wrapper>
-	   <NameSection>
-		Elijah's  Game 
-	   </NameSection>
+      return () => clearInterval(guess)
+  }, [])
 
-	   <RowSection>
-	    <RowWrapper>
-	     <BoxNameSection>
-		Player
-	     </BoxNameSection>
-	     <BoxSection>{picker}</BoxSection>
-	     <Number>
-		<DisplayBox onClick={() => {
-		   setPicker(1)
-		   console.log(picker)
-		}}>1
-		</DisplayBox>
+  return(
+    <Container>
+      <Wrapper>
+        <NameSection>
+          Elijah's game
+        </NameSection>
 
-		<DisplayBox onClick={() => {
-                   setPicker(2)
-                   console.log(picker)
-                }}>2
-                </DisplayBox>
+        <RowSection>
+          <RowWrapper>
+            <BoxNameSection>Player</BoxNameSection>
+            <BoxSection>{picker}</BoxSection>
+            <Number>
+              <DisplayBox onClick={() => {
+                setPicker(1)
+                console.log(picker)
+              }}>1</DisplayBox>
+              <DisplayBox onClick={() => {
+                setPicker(2)
+                console.log(picker)
+              }}>2</DisplayBox>
+              <DisplayBox onClick={() => {
+                setPicker(3)
+                console.log(picker)
+              }}>3</DisplayBox>
+              <DisplayBox onClick={() => {
+                setPicker(4)
+                console.log(picker)
+              }}>4</DisplayBox>
+              <DisplayBox onClick={() => {
+                setPicker(5)
+                console.log(picker)
+              }}>5</DisplayBox> 
+            </Number>
+          </RowWrapper>
+          <RowWrapper>
+            <BoxNameSection>computer</BoxNameSection>
+            <BoxSection></BoxSection>
+            <InitialValue>Previous value</InitialValue>
+          </RowWrapper>
+        </RowSection>
 
-		<DisplayBox onClick={() => {
-                   setPicker(3)
-                   console.log(picker)
-                }}>3
-                </DisplayBox>
-
-		<DisplayBox onClick={() => {
-                   setPicker(4)
-                   console.log(picker)
-                }}>4
-                </DisplayBox>
-
-		<DisplayBox onClick={() => {
-                   setPicker(5)
-                   console.log(picker)
-                }}>5
-                </DisplayBox>
-	     </Number>
-	    </RowWrapper>
-
-	    <RowWrapper>
-	     <BoxNameSection>
-		Computer
-	    </BoxNameSection>
-	     <BoxSection>
-		{computer - 1}
-	     </BoxSection>
-	     <InitialValue>
-		Old Value
-	     </InitialValue>
-	    </RowWrapper>
-	   </RowSection>
-
-	   <ResultSection>
-	    <DisplayResult>
-		Result:
-	    </DisplayResult>
-	    <DisplayResult>
-	     {picker === computer ? (
-		<Win>You won!</Win>
-	     ):(
-		<Lost>You lost!</Lost>
-	     )}
-	    </DisplayResult>
-	   </ResultSection>
-	  </Wrapper>
-	</Container>
-	)
+        <ResultSection>
+           <DisplayResult>Result</DisplayResult>
+           <DisplayResult>
+              {picker === computer ? (
+                  <Win>You won!</Win>
+              ):(
+                <Lost>You lost!</Lost>
+              )}
+           </DisplayResult>
+        </ResultSection>
+      </Wrapper>
+    </Container>
+  )
 }
 
-export default GameScreen
-
-const InitialValue = styled.div`
-  display: flex;
-  background-color: tomato;
-  color: white;
-  width: 80%;
-  align-items: center;
-  justify-content: center;
-  margin: 20px 10px;
-  height: 30px;
-  border-radius: 5px;
-  font-size: 15px;
-  font-weight: bold;
-  transform: scale(1);
-  transition: all 350ms;
-
-  :hover {
-   cursor: pointer;
-   transform: scale(1.2);
-  }
-`;
+export default GameScreen;
 
 const Win = styled.span`
   color: teal;
@@ -138,32 +96,62 @@ const DisplayResult = styled.div`
   align-items: center;
 `;
 
-const Number = styled.div`
-  display: flex;
+const ResultSection = styled.div`
+  font-size: 30px;
+  margin-top: 40px;
+  align-items: center;
+  color: white;
+`;
+
+const InitialValue = styled.div`
+margin: 20px 10px;
+color: white;
+width: 80%;
+height: 30px;
+border-radius: 5px;
+background-color: tomato;
+display: flex;
+justify-content: center;
+align-items: center;
+font-size: 15px;
+font-weight: bold;
+transform: scale(1.0);
+transition: all 350ms;
+
+:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+  background-color: teal;
+}
 `;
 
 const DisplayBox = styled.div`
   margin: 20px 10px;
+  color: white;
   width: 30px;
   height: 30px;
   border-radius: 50%;
   background-color: teal;
-  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 15px;
   font-weight: bold;
-  transform: scale(1);
+  transform: scale(1.0);
   transition: all 350ms;
 
   :hover {
-   cursor: pointer;
-   transform: scale(1.2);
+    cursor: pointer;
+    transform: scale(1.2);
+    background-color: tomato;
   }
 `;
 
-const BoxSection = styled.div`
+const Number = styled.div`
+  display: flex;
+`;
+
+const BoxSection =  styled.div`
   width: 300px;
   height: 200px;
   background-color: white;
@@ -171,9 +159,9 @@ const BoxSection = styled.div`
   color: black;
   display: flex;
   justify-content: center;
-  align-items: center;
   font-weight: bold;
   font-size: 30px;
+  align-items: center;
 `;
 
 const BoxNameSection = styled.div`
@@ -189,40 +177,36 @@ const RowWrapper = styled.div`
   align-items: center;
 `;
 
-const ResultSection = styled.div`
-  font-size: 30px;
-  margin-top: 40px;
-  color: white;
-`;
-
 const RowSection = styled.div`
-  width: 80%;
   display: flex;
-  justify-content: space-around;
+  width: 80%;
   margin-top: 60px;
+  justify-content: space-around;
 `;
 
 const NameSection = styled.div`
-  font-size: 70px;
+  font-size: 40px;
   font-weight: bold;
-  color: white;
+  color: #fff;
 `;
 
 const Wrapper = styled.div`
-  width: 100%;
-  flex: 100vh;
   display: flex;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
+  width: 80%;
+  flex: 100vh;
+ 
+
 `;
 
 const Container = styled.div`
-  padding-top: 100px;
+  background-color: rgb(17,17,17);
   width: 100%;
   height: 100%;
-  min-height: 100vh;
+  min-height: 100vh; 
+  padding-top: 100px;
   display: flex;
   justify-content: center;
-  background-color: black;
-`;
 
+`;
