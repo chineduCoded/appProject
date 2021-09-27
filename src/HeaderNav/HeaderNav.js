@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from "styled-components"
 import { AiOutlineHome, AiOutlineGithub, AiOutlineFileAdd } from "react-icons/ai"
-import { BiUpload, BiCog } from "react-icons/bi"
+import { BiUpload} from "react-icons/bi"
+import {MdTimer} from "react-icons/md"
 import { Link } from "react-router-dom"
 import img from "./HeaderNavImage/logo2.png"
 
@@ -12,20 +13,20 @@ const HeaderNav = () => {
             <Wrapper>
                 <Logo src={img}/>
                 <NavLink>
-                    <MyLink>
+                    <MyLink to="/">
                         <AiOutlineHome />
                     </MyLink>
-                    <MyLink to="/upload">
-                        <BiUpload />
-                    </MyLink>
-                    <MyLink>
+                    <MyLink to="/github">
                         <AiOutlineGithub />
                     </MyLink>
-                    <MyLink>
-                        <BiCog />
-                    </MyLink>
                     <MyLink to="/card">
+                        <BiUpload />
+                    </MyLink>
+                    <MyLink to="/screen">
                         <AiOutlineFileAdd />
+                    </MyLink>
+                    <MyLink to="/counter">
+                        <MdTimer />
                     </MyLink>
                 </NavLink>
             </Wrapper>
